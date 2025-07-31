@@ -23,10 +23,10 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex flex-col w-64 h-screen bg-white text-gray-900 border-r border-gray-300">
+    <aside className="flex flex-col w-64 h-screen bg-white text-gray-900 border-r-4 border-gray-100">
       <div className="flex items-center justify-center h-20">
-        <h1 className="text-6xl font-bold text-indigo-500 tracking-wide">
-          Inkril
+        <h1 className="text-4xl font-extrabold text-indigo-500 tracking-wide">
+          inkril.
         </h1>
       </div>
 
@@ -42,7 +42,7 @@ export default function DashboardSidebar() {
                   className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors
                     ${
                       isActive
-                        ? "bg-indigo-500 text-white"
+                        ? "border-[3px] border-indigo-200 text-indigo-500"
                         : "hover:bg-indigo-100 text-gray-700"
                     }
                   `}
@@ -55,12 +55,13 @@ export default function DashboardSidebar() {
                       alt={`${name} icon`}
                       width={22}
                       height={22}
-                      className={isActive ? "filter brightness-0 invert" : ""}
+                      className={isActive ? "filter invert" : ""}
                       priority
                     />
                   </span>
                   <span className="font-medium text-lg">{name}</span>
                 </Link>
+                <div className="py-[2px] bg-gray-100"></div>
               </li>
             );
           })}

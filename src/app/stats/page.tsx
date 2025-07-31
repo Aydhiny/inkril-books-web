@@ -1,12 +1,11 @@
 "use client";
-
-import {
-  Flame,
-  CalendarCheck,
-  Trophy,
-  Lightbulb,
-  BookOpen,
-} from "lucide-react";
+import Image from "next/image";
+import Streak from "../../../public/streak.png";
+import Clock from "../../../public/clock.png";
+import Trophy1 from "../../../public/trophy.png";
+import Idea from "../../../public/idea.png";
+// BookOpen is still used for recent reads
+import { BookOpen } from "lucide-react";
 
 const dummyStats = {
   currentStreak: 5,
@@ -57,25 +56,29 @@ export default function EloquencePage() {
         <section className="md:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             {
-              Icon: Flame,
-              color: "text-red-500",
+              icon: Streak,
               label: "Streak",
               value: `${dummyStats.currentStreak} Days`,
               sub: `Max: ${dummyStats.maxStreak}`,
             },
             {
-              Icon: CalendarCheck,
-              color: "text-green-500",
+              icon: Clock,
               label: "Minutes",
               value: dummyStats.totalMinutes,
               sub: "Total Eloquence Time",
             },
-          ].map(({ Icon, color, label, value, sub }, idx) => (
+          ].map(({ icon, label, value, sub }, idx) => (
             <div
               key={idx}
-              className="border border-gray-200 rounded-2xl p-4 flex items-center space-x-3 bg-white"
+              className="border-2 border-gray-200 rounded-2xl p-4 flex items-center space-x-3 bg-white"
             >
-              <Icon className={`${color} w-8 h-8 flex-shrink-0`} />
+              <Image
+                src={icon}
+                alt={label}
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+              />
               <div>
                 <h2 className="text-sm uppercase text-gray-500 font-medium">
                   {label}
@@ -88,7 +91,7 @@ export default function EloquencePage() {
         </section>
 
         {/* Heatmap */}
-        <section className="lg:col-span-8 border border-gray-200 rounded-2xl p-4 bg-white flex flex-col">
+        <section className="lg:col-span-8 border-2 border-gray-200 rounded-2xl p-4 bg-white flex flex-col">
           <h1 className="text-xl font-semibold text-indigo-700 mb-4">
             Eloquence Activity
           </h1>
@@ -119,7 +122,7 @@ export default function EloquencePage() {
         </section>
 
         {/* Recent Reads */}
-        <section className="lg:col-span-4 border border-gray-200 rounded-2xl p-4 bg-white">
+        <section className="lg:col-span-4 border-2 border-gray-200 rounded-2xl p-4 bg-white">
           <h2 className="text-lg font-semibold text-indigo-700 mb-3">
             Recent Reads
           </h2>
@@ -140,7 +143,7 @@ export default function EloquencePage() {
         </section>
 
         {/* Goals */}
-        <section className="lg:col-span-4 border border-gray-200 rounded-2xl p-4 bg-white">
+        <section className="lg:col-span-4 border-2 border-gray-200 rounded-2xl p-4 bg-white">
           <h2 className="text-lg font-semibold text-indigo-700 mb-3">Goals</h2>
           <div className="space-y-4">
             {dummyStats.goals.map((goal, i) => (
@@ -154,7 +157,9 @@ export default function EloquencePage() {
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
                     className="bg-indigo-600 h-2 rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${(goal.current / goal.target) * 100}%` }}
+                    style={{
+                      width: `${(goal.current / goal.target) * 100}%`,
+                    }}
                   />
                 </div>
               </div>
@@ -164,8 +169,14 @@ export default function EloquencePage() {
 
         {/* Ideas + Categories */}
         <section className="lg:col-span-4 flex flex-col gap-6">
-          <div className="border border-gray-200 rounded-2xl p-4 flex items-center space-x-3 bg-white">
-            <Lightbulb className="text-purple-600 w-8 h-8 flex-shrink-0" />
+          <div className="border-2 border-gray-200 rounded-2xl p-4 flex items-center space-x-3 bg-white">
+            <Image
+              src={Idea}
+              alt="Idea Icon"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
             <div>
               <h2 className="text-sm uppercase text-gray-500 font-medium">
                 Ideas Logged
@@ -175,7 +186,7 @@ export default function EloquencePage() {
               </p>
             </div>
           </div>
-          <div className="border border-gray-200 rounded-2xl p-4 bg-white flex-grow">
+          <div className="border-2 border-gray-200 rounded-2xl p-4 bg-white flex-grow">
             <h2 className="text-lg font-semibold text-indigo-700 mb-3">
               Top Categories
             </h2>
@@ -193,7 +204,7 @@ export default function EloquencePage() {
         </section>
 
         {/* Achievements */}
-        <section className="lg:col-span-12 border border-gray-200 rounded-2xl p-4 bg-white">
+        <section className="lg:col-span-12 border-2 border-gray-200 rounded-2xl p-4 bg-white">
           <h2 className="text-lg font-semibold text-indigo-700 mb-4">
             Achievements
           </h2>
@@ -201,9 +212,15 @@ export default function EloquencePage() {
             {dummyStats.achievements.map((title, idx) => (
               <div
                 key={idx}
-                className="border border-indigo-100 rounded-lg px-3 py-3 text-center text-sm font-medium text-gray-700 flex flex-col items-center justify-center hover:bg-indigo-100 transition-colors"
+                className="border-2 border-indigo-100 rounded-lg px-3 py-3 text-center text-sm font-medium text-gray-700 flex flex-col items-center justify-center hover:bg-indigo-100 transition-colors"
               >
-                <Trophy className="text-yellow-500 w-6 h-6 mb-2" />
+                <Image
+                  src={Trophy1}
+                  alt="Trophy"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 mb-2 object-contain"
+                />
                 {title}
               </div>
             ))}
