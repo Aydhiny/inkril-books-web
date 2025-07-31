@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
-        <div className="flex h-full">
+        <div className="flex overflow-hidden h-full">
           {/* Sidebar */}
           <DashboardSidebar />
 
@@ -39,7 +39,7 @@ export default function RootLayout({
             <Navbar />
 
             {/* Page content fills the rest */}
-            <main className="flex-1 overflow-auto bg-white p-6">
+            <main className="flex-1 overflow-hidden bg-white p-6">
               {children}
             </main>
           </div>

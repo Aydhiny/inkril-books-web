@@ -43,8 +43,7 @@
 body {
   background-color: var(--foreground);
   color: #242424;
-  font-family: "Concert One", sans-serif;
-
+  font-family: Poppins;
   font-weight: 400;
   font-style: normal;
 }

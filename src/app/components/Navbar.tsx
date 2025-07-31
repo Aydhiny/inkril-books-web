@@ -51,7 +51,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="bg-white w-full text-gray-900 flex items-center justify-between px-6 h-16 relative">
+    <header className="bg-white border-b-4 border-gray-50 w-full text-gray-900 flex items-center justify-between px-6 h-16 relative">
       {/* Hamburger for mobile */}
       <button
         className="md:hidden p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"

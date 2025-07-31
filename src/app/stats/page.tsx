@@ -50,7 +50,7 @@ const dummyStats = {
 
 export default function EloquencePage() {
   return (
-    <main className="text-[#222] p-4 md:p-6 lg:p-8 w-full h-full overflow-y-auto">
+    <main className="text-[#222] p-4 cursor-default md:p-6 lg:p-8 w-full h-full overflow-y-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
         {/* Streak + Minutes */}
         <section className="md:col-span-2 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -105,7 +105,7 @@ export default function EloquencePage() {
                     return (
                       <div
                         key={dayIndex}
-                        className={`w-4 h-4 rounded-sm ${
+                        className={`w-4 h-4 ${
                           isActive ? "bg-indigo-500" : "bg-indigo-100"
                         }`}
                         title={isActive ? "Active day" : "No activity"}
