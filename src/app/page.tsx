@@ -107,14 +107,14 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen p-6 font-sans">
-      <div className="max-w-7xl mx-auto">
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-auto px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-6">
         <div className="flex justify-between items-center mb-8">
           <div className="flex flex-col">
             <h1 className="text-4xl font-bold text-indigo-500">
               My Book Library
             </h1>
-            <p className="text-xl pt-4 font-semibold text-zinc-500">
+            <p className="text-lg pt-2 text-zinc-400">
               Browse your favourite books. You can also upload & remove books
               from your library.
             </p>
@@ -145,13 +145,13 @@ export default function App() {
               {paginatedBooks.map((book) => (
                 <div
                   key={book.id}
-                  className="border border-gray-300 bg-white flex flex-col hover:border-indigo-500 transition duration-300"
+                  className="border border-gray-300 bg-white flex flex-col hover:border-indigo-500 transition duration-300 cursor-pointer rounded-md"
                   onClick={() => setSelectedBook(book)}
                 >
                   <img
                     src={book.thumbnail}
                     alt={book.title}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-48 sm:h-64 md:h-72 object-cover rounded-t-md"
                   />
                   <div className="p-4 flex-grow flex flex-col">
                     <h2 className="text-lg font-semibold mb-2 text-gray-800">
@@ -177,7 +177,7 @@ export default function App() {
                 onClick={() => setPage(page - 1)}
                 className={`px-4 py-2 border rounded-md text-sm font-medium ${
                   page === 1
-                    ? "text-gray-400 border-gray-300"
+                    ? "text-gray-400 border-gray-300 cursor-not-allowed"
                     : "text-indigo-600 border-indigo-600 hover:bg-indigo-50"
                 }`}
               >
@@ -191,7 +191,7 @@ export default function App() {
                 onClick={() => setPage(page + 1)}
                 className={`px-4 py-2 border rounded-md text-sm font-medium ${
                   page === pageCount
-                    ? "text-gray-400 border-gray-300"
+                    ? "text-gray-400 border-gray-300 cursor-not-allowed"
                     : "text-indigo-600 border-indigo-600 hover:bg-indigo-50"
                 }`}
               >
@@ -200,31 +200,33 @@ export default function App() {
             </div>
           </>
         )}
-
-        {selectedBook && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
-            onClick={() => setSelectedBook(null)}
-          >
-            <div
-              className="bg-white w-full max-w-5xl h-[90vh] relative"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedBook(null)}
-                className="absolute top-2 right-4 text-2xl font-bold text-gray-600 hover:text-red-600"
-              >
-                &times;
-              </button>
-              <iframe
-                src={selectedBook.pdf}
-                className="w-full h-full"
-                title={selectedBook.title}
-              ></iframe>
-            </div>
-          </div>
-        )}
       </div>
+
+      {selectedBook && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+          onClick={() => setSelectedBook(null)}
+        >
+          <div
+            className="bg-white w-full max-w-5xl h-[90vh] relative rounded-md shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedBook(null)}
+              className="absolute top-3 right-4 text-3xl font-bold text-gray-600 hover:text-red-600"
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+            <iframe
+              src={selectedBook.pdf}
+              className="w-full h-full rounded-md"
+              title={selectedBook.title}
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
